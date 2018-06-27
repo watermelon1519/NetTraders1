@@ -121,9 +121,9 @@ def onTick():
 
     bid, ask, spread = GetTickerPrice(exchange, target)
     mid = adjustFloat(bid + spread)
-    numBuy = int(math.min(MaxNets / 2, (mid - bid) / Step,  account[symbolB]['free'] / bid / Lot))
-    numSell = int(math.min(MaxNets / 2, account[symbolA]['free'] / Lot))
-    num = math.max(numBuy, numSell)
+    numBuy = int(min(MaxNets / 2, (mid - bid) / Step,  account[symbolB]['free'] / bid / Lot))
+    numSell = int(min(MaxNets / 2, account[symbolA]['free'] / Lot))
+    num = max(numBuy, numSell)
     print (exchange.id, 'My Amount', {'numBuy': numBuy, 'numSell': numSell})
 
     ordersKeep = []
@@ -135,11 +135,11 @@ def onTick():
         alreadySell = False
         for j in range( len(orders) ):
             if (orders[j]['side'] == ORDER_TYPE_BUY) :
-                if (math.abs( float(orders[j]['price']) - buyPrice) < (Step / 2)) :
+                if (math.fabs( float(orders[j]['price']) - buyPrice) < (Step / 2)) :
                     alreadyBuy = True
                     ordersKeep.append(orders[j]['id'])
             else:
-                if (math.abs(float(orders[j]['price']) - sellPrice) < (Step / 2)) :
+                if (math.fabs(float(orders[j]['price']) - sellPrice) < (Step / 2)) :
                     alreadySell = True
                     ordersKeep.append(orders[j]['id'])
 
@@ -149,7 +149,7 @@ def onTick():
         if ((alreadySell == False) and (i < numSell)) :
             queue.append([sellPrice, ORDER_TYPE_SELL])
 
-    for  i in range(len(orders)):
+    for i in range(len(orders)):
         keep = False
         for  j in range( len(ordersKeep)):
             if (orders[i]['id'] == ordersKeep[j]) :
@@ -168,7 +168,7 @@ def onTick():
             try:
                 myorder = exchange.create_limit_buy_order(target, Lot, queue[i][0])
             except Exception as e:
-                print("create_limit_sell_order Error: {}".format(e))
+                print("create_limit_buy_order Error: {}".format(e))
         else :
             try:
                 myorder = exchange.create_limit_sell_order(target, Lot, queue[i][0])
@@ -208,8 +208,8 @@ LoopInterval = 7
 MinStock = 0.01
 
 
-LoopInterval = math.max(LoopInterval, 1)
-Lot = math.max(MinStock, Lot)
+LoopInterval = max(LoopInterval, 1)
+Lot = max(MinStock, Lot)
 
 #检测一下该站点支持的API
 exchange.describe()
