@@ -166,12 +166,12 @@ def onTick():
     for i in range( len(queue)):
         if (queue[i][1] == ORDER_TYPE_BUY) :
             try:
-                myorder = exchange.create_limit_buy_order(target, Lot, queue[i][0])
+                exchange.create_limit_buy_order(target, Lot, queue[i][0])
             except Exception as e:
                 print("create_limit_buy_order Error: {}".format(e))
         else :
             try:
-                myorder = exchange.create_limit_sell_order(target, Lot, queue[i][0])
+                exchange.create_limit_sell_order(target, Lot, queue[i][0])
             except Exception as e:
                 print("create_limit_sell_order Error: {}".format(e))
 
