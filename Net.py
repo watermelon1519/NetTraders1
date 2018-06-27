@@ -40,9 +40,12 @@ def GetPrice(exchange,symbol):
 
 def GetTickerPrice(exchange,symbol):
     try:
-        orderbook = exchange.fetchOrderBook(symbol)
-        bid = orderbook['bids'][0][0] if len(orderbook['bids']) > 0 else None
-        ask = orderbook['asks'][0][0] if len(orderbook['asks']) > 0 else None
+        #orderbook = exchange.fetchOrderBook(symbol)
+        #bid = orderbook['bids'][0][0] if len(orderbook['bids']) > 0 else None
+        #ask = orderbook['asks'][0][0] if len(orderbook['asks']) > 0 else None
+        ticker = exchange.fetch_ticker(symbol)
+        bid = ticker['bid']
+        ask = ticker['ask']
         spread = (ask  - bid)/2 if (bid and ask) else None
         print (exchange.id, 'market price', {'bid': bid, 'ask': ask, 'spread': spread})
         return bid, ask, spread
@@ -201,7 +204,7 @@ LastOrdersLength = None
 
 #网格交易参数
 MaxNets = 20
-Step = 0.01
+Step = 0.02
 Lot = 0.5
 
 LoopInterval = 7
