@@ -197,7 +197,7 @@ exchange.password = '589621g'
 exchange.verbose = True
 
 
-symbolA = 'ETH'
+symbolA = 'BTC'
 symbolB = 'USDT'
 target = symbolA + '/' + symbolB
 LastOrdersLength = None
@@ -205,7 +205,7 @@ LastOrdersLength = None
 #网格交易参数
 MaxNets = 20
 Step = 0.02
-Lot = 0.5
+Lot = 0.05
 
 LoopInterval = 7
 MinStock = 0.01
