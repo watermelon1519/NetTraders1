@@ -191,10 +191,10 @@ ORDER_TYPE_SELL = 'sell'
 #________________________________________________
 #API的账户密码，后面把他移到外面的json串里去
 exchange = ccxt.bitz({
-    'apiKey': '446e725f166e40a22e37a4d54f7e8553',
-    'secret': 'ROYKE93dipQ6C9LwySapZNeyJTn3zKcJ2UvEqeTJK2xrha5M7L8qG0zEN4kFpj3B',
+    'apiKey': 'X446e725f166e40a22e37a4d54f7e8553',
+    'secret': 'FROYKE93dipQ6C9LwySapZNeyJTn3zKcJ2UvEqeTJK2xrha5M7L8qG0zEN4kFpj3B',
 })
-exchange.password = '589621g'
+exchange.password = '$$$$$$'
 exchange.verbose = True
 
 
