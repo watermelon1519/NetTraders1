@@ -124,7 +124,8 @@ def onTick():
 
     bid, ask, spread = GetTickerPrice(exchange, target)
     mid = adjustFloat(bid + spread)
-    numBuy = int(min(MaxNets / 2, (mid - bid) / Step,  account[symbolB]['free'] / bid / Lot))
+    #numBuy = int(min(MaxNets / 2, (mid - bid) / Step,  account[symbolB]['free'] / bid / Lot))
+    numBuy = int(min(MaxNets / 2,   account[symbolB]['free'] / bid / Lot))
     numSell = int(min(MaxNets / 2, account[symbolA]['free'] / Lot))
     num = max(numBuy, numSell)
     print (exchange.id, 'My Amount', {'numBuy': numBuy, 'numSell': numSell})
